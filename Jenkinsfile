@@ -10,6 +10,7 @@ pipeline {
 		sh '''
 		python3 -m venv venv  # Create virtual environment
         	source venv/bin/activate  # Activate virtual environment
+		pip install --upgrade pip  # Upgrade pip to the latest version
                 pip install -r requirements.txt
 			
 		'''
@@ -17,8 +18,10 @@ pipeline {
         }
         stage('Test') {
             steps {
-		sh "pip install pytest"
-                sh "pytest"
+		sh '''
+        	source venv/bin/activate  # Activate the virtual environment again if needed
+        	pytest  # Run the tests with pytest
+       		 '''
             }
         }
 
