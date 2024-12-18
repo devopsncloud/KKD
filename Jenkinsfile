@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        SERVER_IP = credentials('prod-server-ip')
+        SERVER_IP = credentials('single_server_ip')
     }
     stages {
         stage('Setup') {
